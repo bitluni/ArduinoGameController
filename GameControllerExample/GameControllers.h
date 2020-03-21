@@ -33,7 +33,7 @@ class GameControllers
   int latchPin;
   int clockPin;
   int dataPins[MAX_CONTROLLERS];
-  int buttons[MAX_CONTROLLERS][12];
+  long buttons[MAX_CONTROLLERS][12];
 
   ///This has to be initialized once for the shared pins latch and clock
   void init(int latch, int clock)
@@ -104,7 +104,7 @@ class GameControllers
   }
 
   ///returns true if button state changed to down since previous poll. repeatAfterTics can be used to repeat after button was hold down for sme time
-  bool pressed(int controller, Button b, int repeatAfterTics = 0x7fffffff) const
+  bool pressed(int controller, Button b, long repeatAfterTics = 0x7fffffff) const
   {
     return buttons[controller][translate(controller, b)] == 0 || (buttons[controller][translate(controller, b)] >= repeatAfterTics);
   }
